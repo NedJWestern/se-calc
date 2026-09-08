@@ -16,8 +16,14 @@ https://molab.marimo.io/github/NedJWestern/se-calc/blob/main/notebooks/reinforce
 
 # Project structure
 
+```
+├── notebooks
+│   └── my_notebook.py
+├── pyproject.toml
+└── src
+    └── my_module.py
+```
+
 Inspired by:
 https://docs.marimo.io/guides/package_management/importing_packages/#from-non-package-projects
 
-
-foo
