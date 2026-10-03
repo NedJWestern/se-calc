@@ -10,6 +10,8 @@ mentioning @claude. Explain changes in engineering terms, not code terms.
 
 - `calcs/<topic>.py`: calculators. This is the only place engineering logic lives.
 - `calcs/common.py`: shared tables and constants (e.g. `CONCRETE_EC`).
+- `calcs/example_beam.py`: demo calculator matching the default issue template. Requests that
+  say to replace it should rewrite this file and `tests/test_example_beam.py` in place, not add new ones.
 - `tests/test_<topic>.py`: tests for `calcs/<topic>.py`. Required for every calcs module.
 - `se_calc/`: the framework (UI generation, site build). Don't change it for a calculator request.
 
@@ -35,7 +37,7 @@ def my_calc(
   in the order to display. Checks return the strings `"PASS"` or `"FAIL"`.
 - Pure maths only: no printing, files, Marimo or network. Standard library only, because
   pages run in the browser via Pyodide.
-- Units: mm, MPa, N, kN, kNm, mm². Put fixed code values (e.g. ξcu, Es) as module-level
+- Units: mm, m (spans), MPa, N, kN, kN/m, kNm, mm². Put fixed code values (e.g. ξcu, Es) as module-level
   constants with a comment citing the standard.
 - Use engineering variable names close to the standard's symbols, with comments citing clauses.
 

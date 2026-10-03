@@ -7,7 +7,7 @@ title: "Calculator: "
 @claude please implement this calculator request.
 
 **New calculator or change to an existing one?**
-New calculator.
+Replace the example calculator in `calcs/example_beam.py`.
 
 **What does it calculate, and which standard/clause?**
 Design bending moment and shear for a simply supported beam under a uniformly
