@@ -1,11 +1,9 @@
-name: Tests
+name: Checks
 on:
   pull_request:
-  push:
-    branches-ignore: [main]
 
 jobs:
-  test:
+  checks:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -13,6 +11,7 @@ jobs:
         with:
           enable-cache: true
       - run: uv sync
-      - run: uv run pytest
+      - name: prek (ruff, gitleaks, pytest, file checks)
+        run: uv run prek run --all-files --show-diff-on-failure
       - name: Check calculators build
         run: uv run python -m se_calc.build --no-export

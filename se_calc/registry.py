@@ -12,7 +12,7 @@ def discover() -> list:
     found = []
     for info in sorted(pkgutil.iter_modules(calcs.__path__), key=lambda i: i.name):
         module = importlib.import_module(f"calcs.{info.name}")
-        for name, obj in sorted(vars(module).items()):
+        for _name, obj in sorted(vars(module).items()):
             if is_calculator(obj) and obj.__module__ == module.__name__:
                 found.append((info.name, obj))
     return found

@@ -51,7 +51,8 @@ def my_calc(
 
 ## Commands
 
-- `uv run pytest`: run all tests (must pass before opening a PR).
+- `uv run pytest`: run all tests.
+- `uv run prek run --all-files`: lint, format, secret scan and tests (must pass before opening a PR).
 - `uv run python -m se_calc.build --no-export`: generate notebooks in `build/notebooks/`.
 - `uv run python -m se_calc.build`: also export the static site to `build/site/`.
 - `uv run marimo edit build/notebooks/<name>.py`: try a generated calculator locally.

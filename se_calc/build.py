@@ -24,7 +24,7 @@ PACKAGES = ("se_calc", "calcs")
 
 # The WASM page cannot import files from this repo, so the generated notebook carries the
 # source of `se_calc` and `calcs` and writes them into the in-browser filesystem on start-up.
-NOTEBOOK = '''\
+NOTEBOOK = """\
 import marimo
 
 __generated_with = {version!r}
@@ -73,7 +73,7 @@ def _(calc, form, ui):
 
 if __name__ == "__main__":
     app.run()
-'''
+"""
 
 INDEX = """\
 <!doctype html>
@@ -83,7 +83,9 @@ INDEX = """\
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Structural Engineering Calculators</title>
 <style>
-  body {{ font-family: system-ui, sans-serif; max-width: 40rem; margin: 2rem auto; padding: 0 1rem; }}
+  body {{
+    font-family: system-ui, sans-serif; max-width: 40rem; margin: 2rem auto; padding: 0 1rem;
+  }}
   li {{ margin: 0.5rem 0; }}
 </style>
 </head>
@@ -135,15 +137,21 @@ def export_site(pages: list[tuple[str, str]]) -> None:
     for slug, _ in pages:
         subprocess.run(
             [
-                sys.executable, "-m", "marimo", "export", "html-wasm",
+                sys.executable,
+                "-m",
+                "marimo",
+                "export",
+                "html-wasm",
                 str(BUILD / "notebooks" / f"{slug}.py"),
-                "-o", str(site / slug), "--mode", "run", "--force",
+                "-o",
+                str(site / slug),
+                "--mode",
+                "run",
+                "--force",
             ],
             check=True,
         )
-    items = "\n".join(
-        f'<li><a href="{slug}/">{html.escape(name)}</a></li>' for slug, name in pages
-    )
+    items = "\n".join(f'<li><a href="{slug}/">{html.escape(name)}</a></li>' for slug, name in pages)
     (site / "index.html").write_text(INDEX.format(items=items))
 
 
