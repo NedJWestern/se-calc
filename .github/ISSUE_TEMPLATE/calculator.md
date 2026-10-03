@@ -6,6 +6,41 @@ title: "Calculator: "
 
 @claude please implement this calculator request.
 
+<!--
+EXAMPLE of a completed request (this comment is hidden once the issue is submitted):
+
+New calculator or change to an existing one?
+New calculator.
+
+What does it calculate, and which standard/clause?
+Design bending moment and shear for a simply supported beam under a uniformly
+distributed load, factored per AS/NZS 1170.0 Cl 4.2.2 (1.2G + 1.5Q).
+
+Inputs
+- Span L, m, typical 6, min 0.5, max 20
+- Dead load G, kN/m, typical 5, min 0
+- Live load Q, kN/m, typical 3, min 0
+- Bending capacity φMu, kNm, typical 50, min 0
+
+Formulas / method
+w* = 1.2G + 1.5Q
+M* = w* L² / 8
+V* = w* L / 2
+
+Outputs and checks
+- w*, kN/m
+- M*, kNm
+- V*, kN
+- Bending check: PASS if M* <= φMu
+
+Worked example
+L = 6, G = 5, Q = 3, φMu = 50
+w* = 1.2(5) + 1.5(3) = 10.5 kN/m
+M* = 10.5 × 6² / 8 = 47.25 kNm
+V* = 10.5 × 6 / 2 = 31.5 kN
+Bending check: 47.25 <= 50 → PASS
+-->
+
 **New calculator or change to an existing one?**
 
 
