@@ -36,6 +36,7 @@ se_calc/        framework: turns each function into a Marimo web page (WASM)
 
 - GitHub repo settings → Pages → Source: **GitHub Actions**.
 - Install the Claude GitHub App (`/install-github-app` in Claude Code, or https://github.com/apps/claude)
-  and add an `ANTHROPIC_API_KEY` repository secret. Usage is billed to that key's organisation.
+  and add a `CLAUDE_CODE_OAUTH_TOKEN` repository secret (run `claude setup-token` to get one). Usage counts
+  against that Claude subscription's limits.
 - Engineers need write access to the repository to trigger @claude.
 - Recommended: protect `main` so pull requests need the *Tests* check and one review.

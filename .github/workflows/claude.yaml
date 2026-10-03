@@ -1,5 +1,5 @@
 # Lets engineers request calculator changes by mentioning @claude in an issue or PR.
-# Requires the Claude GitHub App and an ANTHROPIC_API_KEY repository secret.
+# Requires the Claude GitHub App and a CLAUDE_CODE_OAUTH_TOKEN repository secret (from `claude setup-token`).
 name: Claude
 on:
   issues:
@@ -33,5 +33,5 @@ jobs:
       - run: uv sync
       - uses: anthropics/claude-code-action@v1
         with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           claude_args: --allowedTools "Bash(uv run pytest:*),Bash(uv run python -m se_calc.build --no-export)"
