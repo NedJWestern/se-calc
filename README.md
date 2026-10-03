@@ -1,23 +1,41 @@
 # se-calc
 
-Structural Engineering Calculators
+Structural Engineering Calculators, published at the repository's GitHub Pages site.
 
-# Instructions
+## Adding or changing a calculator
 
-- Install [uv](https://docs.astral.sh/uv/)
-- Install Python packages: `uv sync`
-- Start Marimo local server: `marimo edit`
+**Engineers:** open a new issue using the *New or changed calculator* template and fill it in.
+Claude will reply on the issue and open a pull request with the calculator and its tests.
+Check the results against your worked example, then ask a reviewer to merge. Once it is
+merged, the website updates automatically.
 
-Publish to [molab from GitHub](https://molab.marimo.io/github)
+**Developers:** see [CLAUDE.md](CLAUDE.md) for the calculator conventions.
 
-https://molab.marimo.io/github/NedJWestern/se-calc/blob/main/notebooks/reinforced_concrete.py
+## How it works
 
+```
+calcs/          calculators as plain Python functions  <- the only code engineers see
+tests/          pytest tests with reference values
+se_calc/        framework: turns each function into a Marimo web page (WASM)
+.github/        CI (tests), deploy to GitHub Pages, @claude integration
+```
 
+1. Each `@calculator` function in `calcs/` is discovered automatically.
+2. `se_calc.build` generates a Marimo notebook per calculator (inputs from the function
+   arguments, results table from the returned dict) and exports it to a static WASM page.
+3. On every push to `main`, GitHub Actions runs the tests and, if they pass, publishes the site.
 
-# Project structure
+## Local development
 
-Inspired by:
-https://docs.marimo.io/guides/package_management/importing_packages/#from-non-package-projects
+- Install [uv](https://docs.astral.sh/uv/), then `uv sync`
+- Run tests: `uv run pytest`
+- Build the site: `uv run python -m se_calc.build`, then
+  `python -m http.server --directory build/site` and open http://localhost:8000
 
+## One-off setup
 
-foo
+- GitHub repo settings → Pages → Source: **GitHub Actions**.
+- Install the Claude GitHub App (`/install-github-app` in Claude Code, or https://github.com/apps/claude)
+  and add an `ANTHROPIC_API_KEY` repository secret. Usage is billed to that key's organisation.
+- Engineers need write access to the repository to trigger @claude.
+- Recommended: protect `main` so pull requests need the *Tests* check and one review.
