@@ -1,6 +1,6 @@
 # se-calc
 
-Structural Engineering Calculators, published at the repository's GitHub Pages site.
+Structural Engineering Calculators, published at <https://nedjwestern.github.io/se-calc/>.
 
 ## Adding or changing a calculator
 
